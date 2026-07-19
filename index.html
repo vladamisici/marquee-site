@@ -3,251 +3,228 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Marquee — App Store screenshots, designed on your Mac</title>
-<meta name="description" content="Marquee turns raw app screenshots into a finished App Store listing — designed screenshot sets, an App Preview video editor, on-device localization, and direct upload to App Store Connect. Everything on your Mac.">
+<title>Marquee — ASO and screenshots, one studio</title>
+<meta name="description" content="Marquee is a native macOS studio for App Store launch assets: designed screenshot sets, a real App Preview editor, on-device copy, a local ASO audit, and direct upload to App Store Connect — all on your Mac.">
+<meta property="og:title" content="Marquee — ASO and screenshots, one studio">
+<meta property="og:description" content="Turn raw screenshots into a finished App Store listing on your Mac. Designed sets, App Preview video, on-device copy, a local ASO audit, and direct upload.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="https://vladamisici.github.io/marquee-site/shots/01.png">
 <link rel="icon" type="image/png" href="icon.png">
-<style>
-  :root {
-    --ground: #100d09;
-    --panel: #17120c;
-    --raised: #251f18;
-    --line: rgba(255,255,255,.08);
-    --ink: #f2e9dc;
-    --ink-soft: #cabfa9;
-    --ink-faint: #988c79;
-    --accent: #f4ab3d;
-    --accent-soft: #ffd07e;
-    --ok: #6bbf99;
-    --serif: "New York", "Iowan Old Style", Palatino, Georgia, serif;
-    --sans: -apple-system, BlinkMacSystemFont, "SF Pro Text", "Segoe UI", sans-serif;
-    --mono: "SF Mono", ui-monospace, Menlo, monospace;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  html { scroll-behavior: smooth; }
-  body {
-    background: var(--ground);
-    color: var(--ink);
-    font-family: var(--sans);
-    line-height: 1.6;
-    -webkit-font-smoothing: antialiased;
-  }
-  .stage {
-    position: relative;
-    overflow: hidden;
-  }
-  .stage::before {
-    content: "";
-    position: absolute; inset: 0;
-    background: radial-gradient(120% 90% at 50% 0%, rgba(244,171,61,.10), transparent 55%);
-    pointer-events: none;
-  }
-  .wrap { max-width: 880px; margin: 0 auto; padding: 0 28px; position: relative; }
-
-  header.hero { padding: 96px 0 72px; text-align: center; }
-  .hero img.mark { width: 96px; height: 96px; border-radius: 22px;
-    box-shadow: 0 18px 50px rgba(0,0,0,.5), 0 0 80px rgba(244,171,61,.12); }
-  .hero h1 {
-    font-family: var(--serif); font-weight: 600; font-size: clamp(40px, 7vw, 64px);
-    letter-spacing: -.01em; margin-top: 28px; text-wrap: balance;
-  }
-  .hero p.tag {
-    font-family: var(--serif); font-size: clamp(18px, 2.6vw, 22px);
-    color: var(--ink-soft); margin-top: 14px; text-wrap: balance;
-  }
-  .hero .cta {
-    display: inline-block; margin-top: 36px;
-    background: linear-gradient(135deg, var(--accent-soft), var(--accent));
-    color: #14100a; font-family: var(--serif); font-weight: 600; font-size: 17px;
-    padding: 13px 34px; border-radius: 14px; text-decoration: none;
-    border: 1px solid rgba(255,255,255,.35);
-    box-shadow: 0 10px 40px rgba(244,171,61,.28);
-  }
-  .hero .cta:hover { filter: brightness(1.05); }
-  .hero p.soon { font-size: 12px; color: var(--ink-faint); margin-top: 12px; }
-
-  .strip {
-    border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);
-    background: var(--panel);
-  }
-  .strip .wrap {
-    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-    text-align: center;
-  }
-  .strip .cell { padding: 22px 16px; }
-  .strip .cell + .cell { border-left: 1px solid var(--line); }
-  .strip b { display: block; font-family: var(--serif); font-size: 16px; font-weight: 600; }
-  .strip span { font-size: 12.5px; color: var(--ink-faint); }
-
-  section { padding: 72px 0; }
-  section h2 {
-    font-family: var(--serif); font-weight: 600; font-size: 30px;
-    letter-spacing: -.01em; margin-bottom: 10px; text-wrap: balance;
-  }
-  section p.lede { color: var(--ink-soft); max-width: 62ch; }
-
-  .features { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 40px; }
-  .card {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 16px;
-    padding: 26px 24px;
-  }
-  .card .k {
-    font-family: var(--mono); font-size: 11px; letter-spacing: .14em;
-    text-transform: uppercase; color: var(--accent);
-  }
-  .card h3 { font-family: var(--serif); font-weight: 600; font-size: 19px; margin: 8px 0 6px; }
-  .card p { font-size: 14px; color: var(--ink-soft); }
-
-  .privacy-card {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
-    padding: 40px; margin-top: 36px;
-  }
-  .privacy-card h3 { font-family: var(--serif); font-size: 20px; font-weight: 600; margin: 26px 0 8px; }
-  .privacy-card h3:first-child { margin-top: 0; }
-  .privacy-card p, .privacy-card li { font-size: 15px; color: var(--ink-soft); }
-  .privacy-card ul { padding-left: 22px; margin-top: 8px; }
-  .privacy-card li { margin-bottom: 6px; }
-  .privacy-card .updated { font-family: var(--mono); font-size: 11.5px; color: var(--ink-faint); }
-  .plain {
-    font-family: var(--serif); font-size: 18px; color: var(--ink);
-    border-left: 2px solid var(--accent); padding-left: 16px; margin: 18px 0;
-  }
-
-  .support-card {
-    background: var(--panel); border: 1px solid var(--line); border-radius: 18px;
-    padding: 40px; margin-top: 36px; text-align: center;
-  }
-  .support-card a.mail {
-    display: inline-block; font-family: var(--mono); font-size: 17px;
-    color: var(--accent-soft); text-decoration: none; margin-top: 8px;
-    border-bottom: 1px solid rgba(244,171,61,.4); padding-bottom: 2px;
-  }
-  .support-card p.note { font-size: 13px; color: var(--ink-faint); margin-top: 14px; }
-
-  footer {
-    border-top: 1px solid var(--line); padding: 34px 0 44px;
-    text-align: center; font-size: 12.5px; color: var(--ink-faint);
-  }
-  footer nav { margin-bottom: 10px; }
-  footer nav a { color: var(--ink-soft); text-decoration: none; margin: 0 12px; }
-  footer nav a:hover { color: var(--accent-soft); }
-
-  @media (max-width: 660px) {
-    .features { grid-template-columns: 1fr; }
-    .strip .wrap { grid-template-columns: 1fr; }
-    .strip .cell + .cell { border-left: none; border-top: 1px solid var(--line); }
-    .privacy-card, .support-card { padding: 28px 22px; }
-  }
-</style>
+<link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="stage">
+<nav class="nav">
   <div class="wrap">
-    <header class="hero">
-      <img class="mark" src="icon.png" alt="Marquee app icon" width="96" height="96">
-      <h1>Make it look featured.</h1>
-      <p class="tag">Marquee turns your raw screenshots into a finished App Store listing —
-      designed, localized, and uploaded, without leaving your Mac.</p>
-      <a class="cta" href="#support">Coming to the Mac App Store</a>
-      <p class="soon">One purchase. No subscription. Everything on-device.</p>
-    </header>
+    <a class="brand" href="#top"><img src="icon.png" alt="" width="28" height="28">Marquee</a>
+    <div class="links">
+      <a href="#features">Features</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#support">Support</a>
+      <a class="cta-sm" href="#pricing">Get Marquee</a>
+    </div>
   </div>
-</div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">Native macOS · App Store Studio</span>
+    <h1>ASO and screenshots,<br>one studio.</h1>
+    <p class="tag">Turn raw screenshots into a finished App Store listing — designed, written,
+      localized, audited, and uploaded — without leaving your Mac.</p>
+    <div class="actions">
+      <a class="btn primary" href="#pricing">Coming to the Mac App Store</a>
+      <a class="btn ghost" href="mailto:vlada@queazy.app?subject=Marquee%20launch">Email me at launch</a>
+    </div>
+    <p class="soon">One-time unlock · No subscription · On-device by default</p>
+    <div class="hero-shot reveal">
+      <img src="shots/01.png" alt="The Marquee studio: filmstrip, live stage, and inspector, editing a Mac App Store screenshot set." loading="eager" width="1600" height="1000">
+    </div>
+  </div>
+</header>
 
 <div class="strip">
   <div class="wrap">
-    <div class="cell"><b>On-device</b><span>Nothing leaves your Mac</span></div>
-    <div class="cell"><b>Exact pixels</b><span>Passes validation first try</span></div>
-    <div class="cell"><b>One purchase</b><span>No subscription, ever</span></div>
+    <div class="cell"><b>On-device by default</b><span>vision &amp; copy stay local</span></div>
+    <div class="cell"><b>Exact-pixel export</b><span>preflighted to Apple's spec</span></div>
+    <div class="cell"><b>One-time unlock</b><span>no subscription, ever</span></div>
   </div>
 </div>
 
-<div class="wrap">
-  <section id="product">
-    <h2>The whole listing, one app.</h2>
-    <p class="lede">Drop in plain simulator screenshots. Marquee frames them in generic device
-    mockups, lights them with art-directed backgrounds, writes headlines with on-device AI,
-    translates every caption, cuts your App Preview in a real video editor, and exports at the
-    exact pixel sizes App Store Connect expects — then uploads them for you.</p>
-    <div class="features">
-      <div class="card"><span class="k">Design</span><h3>Designed screenshot sets</h3>
-        <p>Ten designed systems, editable to the layer. Generic mockups keep your listing
-        featuring-safe; panoramic layouts flow one scene across the whole set.</p></div>
-      <div class="card"><span class="k">Video</span><h3>A real App Preview editor</h3>
-        <p>Trim, sequence, caption, and export the 15–30 second preview at the exact spec the
-        store accepts. Most tools skip the video; Marquee ships an editor for it.</p></div>
-      <div class="card"><span class="k">Words</span><h3>Headlines written on your Mac</h3>
-        <p>On-device intelligence drafts headlines and captions for your real screenshots — no
-        cloud, no account, and your unreleased app stays unreleased.</p></div>
-      <div class="card"><span class="k">World</span><h3>Localized without leaving</h3>
-        <p>Translate copy on-device and preview every storefront before export. Each language
-        exports its own complete, correctly named folder.</p></div>
-      <div class="card"><span class="k">Trust</span><h3>Exact pixels, validated</h3>
-        <p>Every export is checked against the store's requirements before a single file is
-        written. If Marquee exports it, App Store Connect takes it.</p></div>
-      <div class="card"><span class="k">Ship</span><h3>Upload from the app</h3>
-        <p>Connect your own App Store Connect key — stored only in your Keychain — and push
-        screenshots and previews straight into your listing.</p></div>
+<main id="features">
+  <div class="wrap">
+
+    <section class="feature reveal">
+      <div class="shot"><img src="shots/01.png" alt="Marquee's three-zone studio editing a screenshot set." loading="lazy" width="1600" height="1000"></div>
+      <div class="text">
+        <span class="eyebrow">Screenshots</span>
+        <h2>The whole listing, one project.</h2>
+        <p>Import your real screens, choose a design system, and edit backgrounds, layouts, type,
+          captions, and layers — live on the canvas. Start from ten five-slide presets or a blank stage.</p>
+        <p>Export exact-size, opaque PNGs, preflighted against the store's spec before <em>and</em>
+          after each file is written.</p>
+      </div>
+    </section>
+
+    <section class="feature flip reveal">
+      <div class="shot"><img src="shots/02.png" alt="The App Preview editor: a six-scene timeline with a poster marker and the 15–30 second window." loading="lazy" width="1600" height="1000"></div>
+      <div class="text">
+        <span class="eyebrow">App Preview</span>
+        <h2>A real preview editor, not a checkbox.</h2>
+        <p>Cut the same screens into the 15–30-second App Preview: per-scene duration, motion,
+          captions, audio, and a poster frame — then export H.264 for supported families.</p>
+        <p class="note">Most tools stop at stills. Marquee ships the video editor too.</p>
+      </div>
+    </section>
+
+    <section class="feature reveal">
+      <div class="shot"><img src="shots/03.png" alt="The Intelligence panel showing on-device Vision results: dark UI, detected text count, and a color palette read from the screenshot." loading="lazy" width="1600" height="1000"></div>
+      <div class="text">
+        <span class="eyebrow">On-device copy</span>
+        <h2>Copy that reads your screens.</h2>
+        <p>On-device Vision reads the text and color in each screenshot. When Apple Intelligence is
+          available, it drafts screen-aware headlines and listing copy from that evidence.</p>
+        <p>You see exactly what it detected, and review every line before use. Your unreleased app
+          never leaves your Mac.</p>
+      </div>
+    </section>
+  </div>
+
+  <section class="aso reveal">
+    <div class="wrap">
+      <span class="eyebrow">ASO</span>
+      <h2>Optimized to be found.</h2>
+      <p class="lede">A deterministic, on-device ASO audit checks your listing against the search
+        terms <em>you</em> declare — every finding labeled with its evidence. No black-box score, no
+        live-volume guesswork, no ranking promises: a traceable checklist you can actually act on.</p>
+      <div class="chips">
+        <span class="chip">Keyword coverage</span>
+        <span class="chip">UTF-8 byte-limit checks</span>
+        <span class="chip">Caption legibility (WCAG)</span>
+        <span class="chip ok">Featuring-readiness checklist</span>
+      </div>
     </div>
   </section>
 
-  <section id="privacy">
-    <h2>Privacy Policy</h2>
-    <p class="updated">Effective July 16, 2026 · Applies to Marquee for macOS</p>
-    <div class="privacy-card">
-      <p class="plain">Marquee collects nothing. Everything it does happens on your Mac.</p>
+  <div class="wrap">
+    <section class="feature flip reveal">
+      <div class="shot"><img src="shots/04.png" alt="The Localize panel listing ten target languages for the project." loading="lazy" width="1600" height="1000"></div>
+      <div class="text">
+        <span class="eyebrow">Localization</span>
+        <h2>Every storefront, one project.</h2>
+        <p>Choose from ten languages. When Apple Intelligence is available, translate captions and
+          listing copy, preview a completed locale on the canvas, and export each language in its
+          own correctly-named folder.</p>
+      </div>
+    </section>
 
-      <h3>Data collection</h3>
-      <p>Marquee does not collect, transmit, store, or sell any personal data. There are no
-      analytics, no telemetry, no crash reporting services, no advertising identifiers, no
-      accounts, and no tracking of any kind.</p>
+    <section class="feature reveal">
+      <div class="shot"><img src="shots/05.png" alt="The Style inspector: preset, brand kit, background and atmosphere controls, editing live." loading="lazy" width="1600" height="1000"></div>
+      <div class="text">
+        <span class="eyebrow">Style</span>
+        <h2>Make every frame yours.</h2>
+        <p>Preset, brand palette, backgrounds, atmosphere, typography, and layers — all editable,
+          live on the canvas.</p>
+        <p class="note">Generic device frames only. Nothing here recreates Apple hardware — so your
+          listing stays featuring-safe.</p>
+      </div>
+    </section>
 
-      <h3>Your content</h3>
-      <p>Screenshots, screen recordings, project files, headlines, and translations are processed
-      entirely on your Mac. Marquee only reads files you explicitly choose, and writes only where
-      you tell it to. AI-assisted headlines and translations run on Apple's on-device models —
-      your content is never sent to Marquee or to any third party.</p>
+    <section class="feature flip reveal">
+      <div class="shot"><img src="shots/06.png" alt="The Device inspector showing six output families and generic mockup forms for the Mac 2880×1800 canvas." loading="lazy" width="1600" height="1000"></div>
+      <div class="text">
+        <span class="eyebrow">Device families</span>
+        <h2>One base. Every family.</h2>
+        <p>Keep iPhone, iPad, Mac, Apple Watch, Apple TV, and Apple Vision Pro in one project. Start
+          a family from the base, override only what its aspect ratio needs — Marquee re-composes the
+          layout and keeps them linked.</p>
+      </div>
+    </section>
+  </div>
 
-      <h3>App Store Connect uploads</h3>
-      <p>If you connect an App Store Connect API key, it is stored exclusively in your Mac's
-      Keychain and never leaves your machine. When you choose to upload, Marquee communicates
-      directly with Apple's App Store Connect API over an encrypted connection using short-lived
-      tokens signed on your Mac. No intermediary server exists; we could not see your uploads
-      even if we wanted to.</p>
-
-      <h3>What we could see</h3>
-      <p>Nothing. Marquee operates no servers and receives no data from the app.</p>
-
-      <h3>Changes</h3>
-      <p>If this policy ever changes, the new version will be posted at this address with a new
-      effective date. Because the app is built around on-device processing, we do not expect it
-      to change in substance.</p>
-
-      <h3>Contact</h3>
-      <p>Questions about privacy: <a href="mailto:vlada@queazy.app" style="color:var(--accent-soft)">vlada@queazy.app</a></p>
+  <section class="pricing" id="pricing">
+    <div class="wrap">
+      <span class="eyebrow">Pricing</span>
+      <h2>Free to try. Unlock once to ship.</h2>
+      <p class="price">One-time purchase · No subscription · Launch pricing at release</p>
+      <ul>
+        <li>Import your screenshots and see them on a designed preset — free</li>
+        <li>Unlock once to edit everything: copy, style, layers, device families</li>
+        <li>Export exact-size, opaque screenshot sets and your App Preview video</li>
+        <li>Publish straight to App Store Connect with your own key</li>
+        <li>Yours forever, restored on every Mac on your Apple ID</li>
+      </ul>
+      <div class="actions" style="margin-top:32px;justify-content:center;">
+        <a class="btn primary" href="mailto:vlada@queazy.app?subject=Marquee%20launch">Email me at launch</a>
+      </div>
     </div>
   </section>
 
-  <section id="support">
-    <h2>Support</h2>
-    <div class="support-card">
-      <p>Questions, bugs, or a listing that fought back — write any time.</p>
-      <a class="mail" href="mailto:vlada@queazy.app">vlada@queazy.app</a>
-      <p class="note">Replies come from a human. Include your macOS version and, if it helps,
-      the export or upload error you saw — never send your App Store Connect key or .p8 file.</p>
+  <section class="faq">
+    <div class="wrap">
+      <h2>Questions</h2>
+      <div class="list">
+        <details><summary>Does Marquee upload to the App Store for me?</summary>
+          <p>Yes. Connect your own App Store Connect API key — stored only in your Mac's Keychain —
+            and Marquee pushes your screenshots straight into your listing's draft. You still review
+            and submit for review yourself.</p></details>
+        <details><summary>Is my unreleased app safe?</summary>
+          <p>Yes. Screenshot analysis and copy drafting run on your Mac with Apple's on-device models.
+            Nothing is sent to us — we run no servers. Only when you choose to publish does Marquee
+            send your files to Apple's App Store Connect, over an encrypted connection.</p></details>
+        <details><summary>Does it guarantee my listing passes review?</summary>
+          <p>No — and we won't pretend otherwise. Marquee preflights every screenshot against Apple's
+            pixel spec (size, opacity, color space) before it's written, which removes a common class
+            of asset rejections. App Store review itself is Apple's call, not ours.</p></details>
+        <details><summary>Do I need Apple Intelligence?</summary>
+          <p>Not for the core. Importing, designing, exact-pixel export, and the ASO audit all work
+            without it. On-device headline drafting and translation need Apple Intelligence available
+            on your Mac, with a clear fallback when it isn't.</p></details>
+        <details><summary>What does it cost?</summary>
+          <p>Free to try. A one-time unlock enables editing, export, and publishing — no subscription.
+            Launch pricing is shown on the Mac App Store at release.</p></details>
+        <details><summary>What do I need to run it?</summary>
+          <p>macOS 26 or later. Marquee prepares listing assets for iPhone, iPad, Mac, Apple Watch,
+            Apple TV, and Apple Vision Pro.</p></details>
+      </div>
     </div>
   </section>
-</div>
+
+  <section class="support" id="support">
+    <div class="wrap">
+      <span class="eyebrow">Support</span>
+      <h2>Questions, bugs, or a listing that fought back?</h2>
+      <div class="card">
+        <p>Write any time — replies come from a human.</p>
+        <a class="mail" href="mailto:vlada@queazy.app">vlada@queazy.app</a>
+        <p class="note">Include your macOS version and any export or upload error you saw. Never send
+          your App Store Connect key or <span style="font-family:var(--mono)">.p8</span> file.</p>
+      </div>
+    </div>
+  </section>
+</main>
 
 <footer>
   <nav>
-    <a href="#product">Product</a>
-    <a href="#privacy">Privacy</a>
+    <a href="#features">Features</a>
+    <a href="privacy.html">Privacy</a>
+    <a href="terms.html">Terms</a>
     <a href="#support">Support</a>
   </nav>
-  © 2026 Queazy. Marquee is not affiliated with Apple Inc. App Store and App Store Connect are
-  trademarks of Apple Inc.
+  <p class="fine">© 2026 Queazy. Marquee is not affiliated with, endorsed by, or sponsored by Apple Inc.
+    Apple, App Store, App Store Connect, Apple Intelligence, Mac, and macOS are trademarks of Apple Inc.</p>
 </footer>
 
+<script>
+  // Subtle scroll reveal — respects reduced-motion (the class stays hidden only if we observe).
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches && "IntersectionObserver" in window) {
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add("in"); io.unobserve(e.target); }
+    }, { rootMargin: "0px 0px -8% 0px" });
+    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+  } else {
+    document.querySelectorAll(".reveal").forEach(el => el.classList.add("in"));
+  }
+</script>
 </body>
 </html>
