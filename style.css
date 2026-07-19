@@ -64,11 +64,14 @@ h1, h2, h3 { font-family: var(--serif); font-weight: 600; letter-spacing: -.01em
 .nav .links { margin-left: auto; display: flex; align-items: center; gap: 26px; }
 .nav .links a { color: var(--ink-soft); text-decoration: none; font-size: 14px; }
 .nav .links a:hover { color: var(--ink); }
-.nav .cta-sm {
+/* Higher specificity than `.nav .links a` so the near-black ink on amber isn't overridden
+   by the link color (which made "Get Marquee" invisible). */
+.nav .links a.cta-sm {
   font-size: 13px; font-weight: 600; color: #14100a;
   background: linear-gradient(135deg, var(--accent-soft), var(--accent));
   padding: 8px 16px; border-radius: 10px; text-decoration: none;
 }
+.nav .links a.cta-sm:hover { color: #14100a; filter: brightness(1.05); }
 @media (max-width: 720px) { .nav .links a:not(.cta-sm) { display: none; } }
 
 /* ---- Hero ---- */
