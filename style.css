@@ -37,7 +37,7 @@ body {
 }
 
 a { color: var(--accent-soft); }
-img { max-width: 100%; display: block; }
+img { max-width: 100%; height: auto; display: block; }
 :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
 
 .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
