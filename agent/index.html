@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Marquee Agent — let Claude Code or Codex drive the studio</title>
+<meta name="description" content="marquee-mcp is Marquee's free MCP server: coding agents like Claude Code and Codex can capture real simulator screens, compose screenshot sets, run the ASO audit, and render store-exact files — while publishing stays yours.">
+<meta property="og:title" content="Marquee Agent — let Claude Code or Codex drive the studio">
+<meta property="og:description" content="A free MCP server for Marquee. Your coding agent captures real screens, composes the set, audits the copy, and renders store-exact files.">
+<meta property="og:type" content="website">
+<link rel="icon" type="image/png" href="../icon.png">
+<link rel="stylesheet" href="../style.css?v=3">
+<style>
+  .code { background: rgba(127,127,127,.08); border: 1px solid rgba(127,127,127,.18);
+          border-radius: 10px; padding: 14px 16px; font-family: var(--mono);
+          font-size: .88rem; overflow-x: auto; white-space: pre; margin: 10px 0 22px; }
+  .step-num { font-family: var(--mono); opacity: .55; margin-right: 8px; }
+</style>
+</head>
+<body>
+
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="../index.html"><img src="../icon.png" alt="" width="28" height="28">Marquee</a>
+    <div class="links">
+      <a href="../index.html#features">Features</a>
+      <a href="../index.html#pricing">Pricing</a>
+      <a href="../index.html#support">Support</a>
+      <a class="cta-sm" href="https://apps.apple.com/app/id6792501183">Get Marquee</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <span class="eyebrow">marquee-mcp · Free companion tool</span>
+    <h1>Your coding agent<br>can drive Marquee.</h1>
+    <p class="tag">marquee-mcp is a Model Context Protocol server for Marquee. Claude Code, Codex, or
+      any MCP-speaking agent can build a listing end to end: capture real screens off the simulator,
+      compose the set, research the market, audit the copy, and render the exact files
+      App Store Connect takes.</p>
+  </div>
+</header>
+
+<main>
+  <div class="wrap">
+
+    <section class="feature reveal in">
+      <div class="text" style="max-width:640px;margin:0 auto;">
+        <span class="eyebrow">Install</span>
+        <h2>One command.</h2>
+        <div class="code">curl -fsSL https://vladamisici.github.io/marquee-site/agent/install.sh | sh</div>
+        <p><span class="step-num">2</span>Tell Claude Code about it:</p>
+        <div class="code">claude mcp add marquee -- ~/.marquee/bin/marquee-mcp</div>
+        <p><span class="step-num">3</span>Or Codex — add to <span style="font-family:var(--mono)">~/.codex/config.toml</span>:</p>
+        <div class="code">[mcp_servers.marquee]
+command = "~/.marquee/bin/marquee-mcp"</div>
+        <p class="note">Prefer to see what you're running? <a href="marquee-mcp-1.1.0-macos.tar.gz">Download the tarball</a>
+          (universal macOS binary) or read <a href="install.sh">install.sh</a> first — it only writes to
+          <span style="font-family:var(--mono)">~/.marquee/bin</span>. Sanity-check any time with
+          <span style="font-family:var(--mono)">marquee-mcp --selftest</span>; it builds a whole project
+          end to end and reports each stage.</p>
+      </div>
+    </section>
+
+    <section class="feature reveal in">
+      <div class="text" style="max-width:640px;margin:0 auto;">
+        <span class="eyebrow">What it can do</span>
+        <h2>The whole listing, hands-free.</h2>
+        <p><b>Capture real screens.</b> Boots a simulator, launches your build, sets the 9:41 status
+          bar, captures — the screenshots App Review actually wants.</p>
+        <p><b>Compose and see its own work.</b> Adds slides, sets design and copy, then renders
+          previews back as images — the agent looks at the result instead of guessing.</p>
+        <p><b>Research and audit.</b> The same market checks and listing audit as the Marquee app —
+          verdicts with receipts, legibility measured off rendered pixels.</p>
+        <p><b>Render the deliverables.</b> Spec-exact PNGs for every family and language, plus the
+          15–30s preview video with the audio track uploads require.</p>
+        <p><b>Preflight the whole thing.</b> Slide counts, byte budgets, layout collisions,
+          provenance — the same ship gate as the app.</p>
+        <p class="note">The project it writes is a normal .marquee file. Open it in Marquee and take
+          over any time.</p>
+      </div>
+    </section>
+
+    <section class="feature reveal in">
+      <div class="text" style="max-width:640px;margin:0 auto;">
+        <span class="eyebrow">By design</span>
+        <h2>Two things it won't do.</h2>
+        <p>It won't call generated artwork a real screenshot — every slide records where its image
+          came from, and preflight blocks synthetic screens. And it won't publish: the agent prepares
+          the upload bundle, but putting a listing in front of App Review stays your action, in
+          Marquee or App Store Connect.</p>
+        <p class="note">Why a separate download instead of inside the app? The agent captures real
+          simulator screens and reads your project files wherever they live — two things a sandboxed
+          App Store binary can't do. The Mac App Store app stays fully sandboxed; the agent is this
+          small, open companion.</p>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer>
+  <nav>
+    <a href="../index.html#features">Features</a>
+    <a href="../privacy.html">Privacy</a>
+    <a href="../terms.html">Terms</a>
+    <a href="../index.html#support">Support</a>
+  </nav>
+  <p class="fine">© 2026 Queazy. Marquee is not affiliated with, endorsed by, or sponsored by Apple Inc.
+    Apple, App Store, App Store Connect, Mac, and macOS are trademarks of Apple Inc.</p>
+</footer>
+
+</body>
+</html>
