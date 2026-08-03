@@ -12,10 +12,13 @@
 <div class="wrap legal">
   <a class="back" href="index.html">← Marquee</a>
   <h1>Privacy Policy</h1>
-  <p class="eff">Effective July 19, 2026 · Applies to Marquee for macOS</p>
+  <p class="eff">Effective August 4, 2026 · Applies to Marquee for macOS, marquee-mcp, and the
+    Marquee connector for Claude</p>
 
   <div class="doc">
-    <p class="lead">Marquee collects nothing about you. Almost everything it does happens on your Mac.</p>
+    <p class="lead">The Marquee app collects nothing about you, and almost everything it does happens
+      on your Mac. The one exception is the optional Marquee connector for Claude, which is a hosted
+      service — what it receives, and what it does not, is set out in full below.</p>
 
     <h2>Data we collect</h2>
     <p>None. Marquee does not collect, transmit, store, or sell any personal data. There are no
@@ -41,9 +44,38 @@
       short-lived tokens signed locally on your Mac. There is no Marquee server in between — your
       files go to your own Apple account and nowhere else.</p>
 
+    <h2>The Marquee connector for Claude</h2>
+    <p>The Marquee connector is an optional hosted service that lets Claude — on the web, on mobile,
+      or in the desktop app — research App Store listings. It is a separate thing from the Marquee
+      app, and you have to add it deliberately. Unlike the app, it is a server, so it does receive
+      what you send it.</p>
+    <p><b>What it receives.</b> Only the arguments of the tool call: the search queries or app name
+      you are asking about, and the storefront and platform. Plus the ordinary technical metadata any
+      web server sees, such as the originating IP address and timestamp.</p>
+    <p><b>What it does with them.</b> It forwards the query to Apple's public iTunes Search and
+      search-hints endpoints — the same public data the App Store shows anyone — and returns an
+      analysis. Results are held in memory briefly so a repeated query does not hit Apple again;
+      that cache is not a database, it is not written to disk, and it is discarded when the service
+      restarts.</p>
+    <p><b>What it never receives.</b> Your screenshots, your project files, your unreleased app, your
+      App Store Connect key, your licence key, or your listing copy. None of it is used by these
+      tools and none of it is sent. The connector cannot render, export, or publish anything — that
+      is the Mac app, on your machine.</p>
+    <p><b>No account, no profile.</b> The connector requires no sign-in and issues no session. There
+      is nothing for a query to be attached to, so nothing is built up about you over time. Queries
+      are not sold, shared, or used to train anything.</p>
+
+    <h2>marquee-mcp on your Mac</h2>
+    <p>The agent server you install for Claude Desktop, Claude Code or Codex runs entirely on your
+      machine and reports nothing to us. If you hold a licence key it is checked locally, offline,
+      against a signature — there is no activation call and no licence server, so we do not learn
+      when or where you use it.</p>
+
     <h2>What we could see</h2>
-    <p>Nothing. Marquee operates no servers and receives no data from the app. We could not access
-      your screenshots, keys, or uploads even if we wanted to.</p>
+    <p>From the Marquee app: nothing. It talks to no server of ours and we could not access your
+      screenshots, keys, or uploads even if we wanted to.</p>
+    <p>From the connector: the queries you send it while you are using it, and its server logs. That
+      is the whole extent of it, and it is why the connector is opt-in and separate.</p>
 
     <h2>Children</h2>
     <p>Marquee is a professional developer tool and is not directed at children. It collects no data
