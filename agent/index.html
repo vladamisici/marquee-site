@@ -4,9 +4,9 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Marquee Agent — let Claude Code or Codex drive the studio</title>
-<meta name="description" content="marquee-mcp is Marquee's free MCP server: coding agents like Claude Code and Codex can capture real simulator screens, compose screenshot sets, run the ASO audit, and render store-exact files — while publishing stays yours.">
+<meta name="description" content="marquee-mcp is Marquee's MCP server: coding agents like Claude Code and Codex can capture real simulator screens, compose screenshot sets, run the ASO audit, and render store-exact files — while publishing stays yours. One-click install for Claude Desktop.">
 <meta property="og:title" content="Marquee Agent — let Claude Code or Codex drive the studio">
-<meta property="og:description" content="A free MCP server for Marquee. Your coding agent captures real screens, composes the set, audits the copy, and renders store-exact files.">
+<meta property="og:description" content="An MCP server for Marquee. Your coding agent captures real screens, composes the set, audits the copy, and renders store-exact files.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/png" href="../icon.png">
 <link rel="stylesheet" href="../style.css?v=3">
@@ -33,7 +33,7 @@
 
 <header class="hero" id="top">
   <div class="wrap">
-    <span class="eyebrow">marquee-mcp · Free companion tool</span>
+    <span class="eyebrow">marquee-mcp · Companion tool for Claude</span>
     <h1>Your coding agent<br>can drive Marquee.</h1>
     <p class="tag">marquee-mcp is a Model Context Protocol server for Marquee. Claude Code, Codex, or
       any MCP-speaking agent can build a listing end to end: capture real screens off the simulator,
@@ -48,11 +48,20 @@
     <section class="feature reveal in" style="display:block;">
       <div class="text" style="max-width:640px;margin:0 auto;">
         <span class="eyebrow">Install</span>
-        <h2>One command.</h2>
+        <h2>Double-click it.</h2>
+        <p>For Claude Desktop, Marquee ships as an extension. Download it, double-click, done —
+          no terminal, no runtime to install, nothing outside the extension's own folder.</p>
+        <div class="actions" style="margin:20px 0 8px;">
+          <a class="btn primary" href="marquee.mcpb">Download marquee.mcpb</a>
+        </div>
+        <p class="note">Universal macOS binary, 19 tools. Claude Desktop shows you every permission
+          before it installs anything.</p>
+
+        <h2 style="margin-top:40px;">Or one command.</h2>
+        <p><span class="step-num">1</span>For Claude Code, install the binary:</p>
         <div class="code">curl -fsSL https://vladamisici.github.io/marquee-site/agent/install.sh | sh</div>
-        <p><span class="step-num">2</span>Tell Claude Code about it:</p>
         <div class="code">claude mcp add marquee -- ~/.marquee/bin/marquee-mcp</div>
-        <p><span class="step-num">3</span>Or Codex — add to <span style="font-family:var(--mono)">~/.codex/config.toml</span>:</p>
+        <p><span class="step-num">2</span>Or Codex — add to <span style="font-family:var(--mono)">~/.codex/config.toml</span>:</p>
         <div class="code">[mcp_servers.marquee]
 command = "~/.marquee/bin/marquee-mcp"</div>
         <p class="note">Prefer to see what you're running? <a href="marquee-mcp-1.1.0-macos.tar.gz">Download the tarball</a>
@@ -60,6 +69,16 @@ command = "~/.marquee/bin/marquee-mcp"</div>
           <span style="font-family:var(--mono)">~/.marquee/bin</span>. Sanity-check any time with
           <span style="font-family:var(--mono)">marquee-mcp --selftest</span>; it builds a whole project
           end to end and reports each stage.</p>
+
+        <h2 style="margin-top:40px;">What's free, what needs a key.</h2>
+        <p>Creating projects, capturing screens, composing slides, previewing them and running the
+          full ASO audit all work for free. The three paid outputs — exporting the screenshots,
+          exporting the App Preview video, and preparing the App Store Connect upload — need a
+          Marquee licence, the same unlock the app uses.</p>
+        <p class="note">Paste your key into the extension's settings in Claude Desktop, or into
+          <span style="font-family:var(--mono)">~/.marquee/license</span>. Already bought Marquee on
+          the Mac App Store? marquee-mcp runs outside the store and can't see that purchase —
+          open <b>Help ▸ Connect a Coding Agent</b> in the app and request your key.</p>
       </div>
     </section>
 
